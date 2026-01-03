@@ -1,5 +1,14 @@
 import { Outlet } from "react-router-dom";
-
+import Header from "../components/Header";
+import Footer from "../components/Footer";
+import  Home  from "../pages/Home";
 export default function PublicLayout() {
-  return <Outlet />;
+  return (
+    <>
+    <Header/>
+    <Outlet/>
+    <Home/>
+    <Footer/>
+    </>
+  );
 }
