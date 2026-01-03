@@ -1,5 +1,7 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import logo from "assets/image.png";
+
+
 
 export default function Header({
   brand = "OpenAudit",
@@ -15,8 +17,13 @@ export default function Header({
       <style>{`
         .oa-header {
           background: #f5f7fb;
-          border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+          border-bottom: 1px solid rgba(10, 22, 180, 0.08);
         }
+          .oa-navlink-active {
+  background: #03395aff;
+  color: white;
+}
+
         .oa-topbar {
           background: linear-gradient(180deg, #27a7ff 0%, #0b6fb6 100%);
         }
@@ -37,14 +44,24 @@ export default function Header({
           display: flex;
           gap: 10px;
         }
-        .oa-navlink {
-          color: #0a2a3c;
-          background: rgba(255, 255, 255, 0.65);
-          padding: 8px 14px;
-          border-radius: 10px;
-          font-weight: 600;
-          text-decoration: none;
-        }
+          .oa-navlink {
+  color: #0a2a3c;
+  background: rgba(255, 255, 255, 0.65);
+  padding: 8px 14px;
+  border-radius: 10px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+.oa-navlink:hover {
+  background: rgba(255, 255, 255, 0.85);
+}
+.oa-navlink-active,
+.oa-navlink-active:hover {
+  background: #022e49ff;
+  color: white;
+}
+
       `}</style>
 
       <header className="oa-header">
@@ -57,9 +74,18 @@ export default function Header({
 
             <nav className="oa-nav">
               {links.map((l) => (
-                <Link key={l.label} className="oa-navlink" to={l.href}>
-                  {l.label}
-                </Link>
+               <NavLink
+  key={l.label}
+  to={l.href}
+  end={l.href === "/"}
+  className={({ isActive }) =>
+    `oa-navlink ${isActive ? "oa-navlink-active" : ""}`
+  }
+>
+  {l.label}
+</NavLink>
+
+
               ))}
             </nav>
           </div>
