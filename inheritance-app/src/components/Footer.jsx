@@ -1,5 +1,9 @@
 export default function Footer({
   text = "Transparency enforced by rules, not trust.",
+  email = "contact@openaudit.org",
+  address = "OpenAudit Foundation, Mumbai, India",
+  year = new Date().getFullYear(),
+  phone="+91 9576215344"
 }) {
   return (
     <>
@@ -14,16 +18,34 @@ export default function Footer({
           margin: 0 auto;
           padding: 22px 36px;
           display: flex;
+          flex-direction: column;
           align-items: center;
-          justify-content: center;
+          gap: 10px;
+          text-align: center;
         }
 
         .oa-footer-text {
           color: rgba(255, 255, 255, 0.95);
           font-weight: 600;
-          font-size: 16px;
+          font-size: 32px;
           letter-spacing: 0.3px;
-          text-align: center;
+        }
+
+        .oa-footer-info {
+          color: rgba(255, 255, 255, 0.85);
+          font-size: 14px;
+          line-height: 1.5;
+        }
+
+        .oa-footer-info a {
+          color: rgba(255, 255, 255, 0.95);
+          text-decoration: underline;
+        }
+
+        .oa-footer-copy {
+          margin-top: 6px;
+          color: rgba(255, 255, 255, 0.7);
+          font-size: 13px;
         }
 
         @media (max-width: 520px) {
@@ -39,6 +61,19 @@ export default function Footer({
       <footer className="oa-footer">
         <div className="oa-footer-inner">
           <div className="oa-footer-text">{text}</div>
+
+          <div className="oa-footer-info">
+            📧 <a href={`mailto:${email}`}>{email}</a>
+            <br />
+            📍 {address}
+<br></br>
+            <p>☎️Contact us at : {phone}</p>
+
+          </div>
+
+          <div className="oa-footer-copy">
+            © {year} OpenAudit. All rights reserved.
+          </div>
         </div>
       </footer>
     </>
