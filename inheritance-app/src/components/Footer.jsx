@@ -9,14 +9,19 @@ export default function Footer({
     <>
       <style>{`
         .oa-footer {
-          background: linear-gradient(180deg, #1e9df2 0%, #0b6fb6 100%);
-          margin-top: auto;
-        }
+  background: linear-gradient(180deg, #1e9df2 0%, #0b6fb6 100%);
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
 
         .oa-footer-inner {
           max-width: 1100px;
           margin: 0 auto;
-          padding: 22px 36px;
+          padding: 8px 36px;
           display: flex;
           flex-direction: column;
           align-items: center;
@@ -27,7 +32,11 @@ export default function Footer({
         .oa-footer-text {
           color: rgba(255, 255, 255, 0.95);
           font-weight: 600;
+<<<<<<< HEAD
           font-size: 32px;
+=======
+          font-size: 14px;
+>>>>>>> d514ce4b69bfc6063c68ca10e48f9d60ba8c38f4
           letter-spacing: 0.3px;
         }
 

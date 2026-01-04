@@ -1,5 +1,11 @@
 import { NavLink } from "react-router-dom";
+<<<<<<< HEAD
 import logo from "assets/image.png"; 
+=======
+import logo from "assets/image.png";
+>>>>>>> d514ce4b69bfc6063c68ca10e48f9d60ba8c38f4
+
+
 
 export default function Header({
   brand = "Bridging Trust Through Data",
@@ -12,6 +18,7 @@ export default function Header({
 }) {
   return (
     <>
+<<<<<<< HEAD
       <style>
         {`
         /* Base Reset for Header */
@@ -26,6 +33,23 @@ export default function Header({
         .oa-navbar {
           max-width: 1200px;
           height:100px;
+=======
+      <style>{`
+        .oa-header {
+          background: #f5f7fb;
+          border-bottom: 1px solid rgba(10, 22, 180, 0.08);
+        }
+          .oa-navlink-active {
+  background: #03395aff;
+  color: white;
+}
+
+        .oa-topbar {
+          background: linear-gradient(180deg, #27a7ff 0%, #0b6fb6 100%);
+        }
+        .oa-topbar-inner {
+          max-width: 1100px;
+>>>>>>> d514ce4b69bfc6063c68ca10e48f9d60ba8c38f4
           margin: 0 auto;
           padding: 15px 50px;
           display: flex;
@@ -35,6 +59,7 @@ export default function Header({
 
         .oa-logo-container {
           display: flex;
+<<<<<<< HEAD
           align-items: center;
           gap: 15px;
           text-decoration: none;
@@ -48,6 +73,29 @@ export default function Header({
   left: 00px;
   z-index: 101;
         }
+=======
+          gap: 10px;
+        }
+          .oa-navlink {
+  color: #0a2a3c;
+  background: rgba(255, 255, 255, 0.65);
+  padding: 8px 14px;
+  border-radius: 10px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+.oa-navlink:hover {
+  background: rgba(255, 255, 255, 0.85);
+}
+.oa-navlink-active,
+.oa-navlink-active:hover {
+  background: #022e49ff;
+  color: white;
+}
+
+      `}</style>
+>>>>>>> d514ce4b69bfc6063c68ca10e48f9d60ba8c38f4
 
         .oa-brand-text {
           color: #ffffff;
@@ -58,6 +106,7 @@ export default function Header({
           margin:100px
         }
 
+<<<<<<< HEAD
         /* Navigation Container */
         .oa-nav {
           display: flex;
@@ -116,6 +165,24 @@ export default function Header({
             <img src={logo} alt="OpenAudit Logo" className="oa-logo-img" />
             {/* Optional: Add text next to logo if needed, otherwise remove div */}
             <span className="oa-brand-text">{brand}</span>
+=======
+            <nav className="oa-nav">
+              {links.map((l) => (
+               <NavLink
+  key={l.label}
+  to={l.href}
+  end={l.href === "/"}
+  className={({ isActive }) =>
+    `oa-navlink ${isActive ? "oa-navlink-active" : ""}`
+  }
+>
+  {l.label}
+</NavLink>
+
+
+              ))}
+            </nav>
+>>>>>>> d514ce4b69bfc6063c68ca10e48f9d60ba8c38f4
           </div>
 
           {/* Navigation Section */}
