@@ -6,8 +6,7 @@ import React from "react";
 
 ReactDom.createRoot(document.getElementById("root")).render(
 <React.StrictMode>
-<BrowserRouter>
+
 <App/>
-</BrowserRouter>
 </React.StrictMode>
 );

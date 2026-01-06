@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import logo from "assets/image.png";
+import logo from "assets/image1.png";
 
 export default function Header({
   brand = "Bridging Trust Through Data",
@@ -12,15 +12,15 @@ export default function Header({
 }) {
   return (
     <header className="w-full bg-gradient-to-br from-sky-400 to-blue-600 shadow-lg relative z-50">
-      <div className="max-w-[1200px] h-[100px] mx-auto px-12 flex items-center justify-between">
+      <div className="max-w-[1200px] h-[100px] mx-auto flex items-center justify-between">
         
         <div className="flex items-center gap-4">
 <img
   src={logo}
-  style={{ height: "200px" }}
+  style={{ height: "200px",
+    filter:"brightness(1.1)"
+  }}
 />
-
-
 
           <span className="text-white font-bold text-2xl tracking-tight">
             {brand}
