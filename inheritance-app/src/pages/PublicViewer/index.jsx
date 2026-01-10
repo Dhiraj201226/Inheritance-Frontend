@@ -1,5 +1,5 @@
 import react from "react";
-import PartyPrivate from "../PartyPublic";
+import PartyPublic from "../PartyPublic";
 import { BuildingOffice2Icon } from "@heroicons/react/24/solid";
 import { Link } from "react-router-dom";
 export default function PublicViewer(){

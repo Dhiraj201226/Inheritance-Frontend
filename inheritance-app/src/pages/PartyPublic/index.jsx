@@ -35,7 +35,7 @@ export default function PartyPublic() {
 
             <div className="flex items-center gap-3 mt-3">
               <span className="bg-blue-100 text-blue-700 px-3 py-1 rounded-lg text-sm">
-                Anans Depuri
+                Narendra Modi
               </span>
               <div className="w-8 h-8 bg-slate-200 rounded-full" />
             </div>

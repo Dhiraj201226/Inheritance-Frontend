@@ -20,7 +20,7 @@ export default function AppRoutes() {
           <Route path="/About" element={<About/>}/>
           <Route path="/how-it-works" element={<HowItWorks/>}/>
           <Route path="/FAQ" element={<FAQ/>}/>
-          <Route path="/PartyPublic" element={<PublicViewer/>}/>
+          <Route path="/PartyPublic" element={<PartyPublic />} />
           <Route path="/PublicViewer" element={<PublicViewer/>}/>
           <Route path="/Donation" element={<Donation/>}/>
           <Route path="/PartyPrivate" element={<PartyPrivate/>}/>
