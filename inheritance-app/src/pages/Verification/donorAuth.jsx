@@ -8,12 +8,11 @@ const DUMMY_USER = {
 const generateCaptcha = () =>
   Math.random().toString(36).substring(2, 8);
 
-const DonorAuth = ({ onClose }) => {
-  const [mode, setMode] = useState("login");
+export default function DonorAuth({ onClose, onSuccess }) {
+  const [step, setStep] = useState("login");
   const [form, setForm] = useState({ username: "", password: "" });
   const [captcha, setCaptcha] = useState("");
   const [captchaInput, setCaptchaInput] = useState("");
-  const [step, setStep] = useState("credentials");
   const [error, setError] = useState("");
 
   const handleLogin = () => {
@@ -21,8 +20,7 @@ const DonorAuth = ({ onClose }) => {
       form.username === DUMMY_USER.username &&
       form.password === DUMMY_USER.password
     ) {
-      const cap = generateCaptcha();
-      setCaptcha(cap);
+      setCaptcha(generateCaptcha());
       setStep("captcha");
       setError("");
     } else {
@@ -32,139 +30,74 @@ const DonorAuth = ({ onClose }) => {
 
   const verifyCaptcha = () => {
     if (captchaInput === captcha) {
-      alert("Login successful (dummy)");
-      onClose(); // close modal after success
+      onSuccess(); // 🔥 THIS OPENS PROFILE
     } else {
       setError("Captcha incorrect");
     }
   };
 
   return (
-    // OVERLAY
-    <div
-      className="fixed inset-0 z-50 bg-black/50 flex items-center justify-center px-4"
-      onClick={onClose}
-    >
-      {/* MODAL */}
-      <div
-        className="bg-white rounded-2xl shadow-xl w-full max-w-md p-8 relative"
-        onClick={(e) => e.stopPropagation()}
-      >
-        {/* CLOSE BUTTON */}
+    <div className="fixed inset-0 bg-black/40 z-50 flex items-center justify-center">
+      <div className="bg-white rounded-xl p-6 w-full max-w-md relative shadow-xl">
+
         <button
           onClick={onClose}
-          className="absolute top-3 right-4 text-gray-500 text-2xl hover:text-gray-700"
+          className="absolute top-3 right-4 text-xl"
         >
           ×
         </button>
 
-        <h1 className="text-3xl font-semibold text-center text-gray-800 mb-2">
-          {mode === "login" ? "Donor Login" : "Sign Up"}
-        </h1>
-        <p className="text-center text-gray-500 mb-6">
-          Verify your identity to continue
-        </p>
+        <h2 className="text-2xl font-semibold text-center mb-4">
+          Donor Login
+        </h2>
 
-        {/* TOGGLE */}
-        <div className="flex mb-6 rounded-lg overflow-hidden border">
-          <button
-            onClick={() => {
-              setMode("login");
-              setStep("credentials");
-              setError("");
-            }}
-            className={`flex-1 py-2 ${
-              mode === "login"
-                ? "bg-blue-600 text-white"
-                : "bg-gray-100"
-            }`}
-          >
-            Login
-          </button>
-          <button
-            onClick={() => {
-              setMode("signup");
-              setError("");
-            }}
-            className={`flex-1 py-2 ${
-              mode === "signup"
-                ? "bg-blue-600 text-white"
-                : "bg-gray-100"
-            }`}
-          >
-            Sign Up
-          </button>
-        </div>
-
-        {/* SIGNUP */}
-        {mode === "signup" && (
-          <div className="space-y-4">
-            <input className="input" placeholder="Full Name" />
-            <input className="input" placeholder="Username" />
-            <input className="input" type="password" placeholder="Password" />
-            <button className="btn-primary w-full">Submit</button>
-            <p className="text-xs text-gray-500 text-center">
-              (Signup is UI-only for now)
-            </p>
-          </div>
-        )}
-
-        {/* LOGIN */}
-        {mode === "login" && step === "credentials" && (
-          <div className="space-y-4">
+        {step === "login" && (
+          <>
             <input
-              className="input"
+              className="w-full border rounded px-3 py-2 mb-3"
               placeholder="Username"
               onChange={(e) =>
                 setForm({ ...form, username: e.target.value })
               }
             />
             <input
-              className="input"
               type="password"
+              className="w-full border rounded px-3 py-2 mb-3"
               placeholder="Password"
               onChange={(e) =>
                 setForm({ ...form, password: e.target.value })
               }
             />
-            {error && <p className="text-red-500 text-sm">{error}</p>}
-            <button onClick={handleLogin} className="btn-primary w-full">
+            {error && <p className="text-red-500 text-sm mb-2">{error}</p>}
+            <button
+              onClick={handleLogin}
+              className="w-full bg-blue-600 text-white py-2 rounded"
+            >
               Login
             </button>
-          </div>
+          </>
         )}
 
-        {/* CAPTCHA */}
-        {mode === "login" && step === "captcha" && (
-          <div className="space-y-4">
-            <div className="flex items-center justify-between bg-gray-100 p-3 rounded-lg">
-              <span className="font-mono text-lg tracking-widest">
-                {captcha}
-              </span>
-              <button
-                onClick={() => setCaptcha(generateCaptcha())}
-                className="text-blue-600 text-sm"
-              >
-                Refresh
-              </button>
+        {step === "captcha" && (
+          <>
+            <div className="bg-gray-100 text-center py-2 rounded mb-3 font-mono">
+              {captcha}
             </div>
-
             <input
-              className="input"
+              className="w-full border rounded px-3 py-2 mb-3"
               placeholder="Enter captcha"
               onChange={(e) => setCaptchaInput(e.target.value)}
             />
-
-            {error && <p className="text-red-500 text-sm">{error}</p>}
-
-            <button onClick={verifyCaptcha} className="btn-primary w-full">
-              Verify & Continue
+            {error && <p className="text-red-500 text-sm mb-2">{error}</p>}
+            <button
+              onClick={verifyCaptcha}
+              className="w-full bg-blue-600 text-white py-2 rounded"
+            >
+              Verify
             </button>
-          </div>
+          </>
         )}
       </div>
     </div>
   );
-};
-
-export default DonorAuth;
+}

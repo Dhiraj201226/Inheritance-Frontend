@@ -1,10 +1,9 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
-// ✅ correct relative import (case-sensitive)
 import DonorAuth from "../Verification/donorAuth";
+import DonorProfile from "../DonorProfile";
 
-// icons
 import {
   CircleStackIcon,
   HeartIcon,
@@ -12,17 +11,18 @@ import {
   ShieldCheckIcon,
 } from "@heroicons/react/24/outline";
 
-// ✅ correct image path
 import tech from "../../assets/image.png";
 
 export default function Home() {
-  const [showDonateAuth, setShowDonateAuth] = useState(false);
+  // 🔑 single source of truth
+  // none | auth | profile
+  const [donateStep, setDonateStep] = useState("none");
 
   return (
-    <div className="bg-white w-full flex flex-col items-center py-12 px-4 sm:px-6 lg:px-8">
+    <div className="bg-white w-full py-12 px-4 sm:px-6 lg:px-8">
 
       {/* HERO IMAGE */}
-      <div className="w-full max-w-5xl mb-12">
+      <div className="w-full max-w-5xl mx-auto mb-12">
         <img
           src={tech}
           alt="OpenAudit data flow"
@@ -31,51 +31,48 @@ export default function Home() {
       </div>
 
       {/* MAIN CARDS */}
-      <div className="w-full max-w-5xl grid grid-cols-1 sm:grid-cols-2 gap-8">
+      <div className="w-full max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-2 gap-8">
 
-        {/* PUBLIC DATA */}
         <Link to="/PublicViewer">
-          <Card
-            icon={CircleStackIcon}
-            title="Explore Public Data"
-          />
+          <Card icon={CircleStackIcon} title="Explore Public Data" />
         </Link>
 
-        {/* DONATE (POPUP) */}
-        <div onClick={() => setShowDonateAuth(true)}>
-          <Card
-            icon={HeartIcon}
-            title="Donate"
-          />
+        {/* DONATE */}
+        <div onClick={() => setDonateStep("auth")}>
+          <Card icon={HeartIcon} title="Donate" />
         </div>
 
-        {/* PARTY LOGIN */}
         <Link to="/PartyPrivate">
-          <Card
-            icon={BuildingOffice2Icon}
-            title="Party Login"
-          />
+          <Card icon={BuildingOffice2Icon} title="Party Login" />
         </Link>
 
-        {/* ADMIN */}
         <Link to="/Admin">
-          <Card
-            icon={ShieldCheckIcon}
-            title="Admin Portal"
-          />
+          <Card icon={ShieldCheckIcon} title="Admin Portal" />
         </Link>
 
       </div>
 
-      {/* DONOR AUTH MODAL */}
-      {showDonateAuth && (
-        <DonorAuth onClose={() => setShowDonateAuth(false)} />
+      {/* STEP 1: AUTH */}
+      {donateStep === "auth" && (
+        <DonorAuth
+          onClose={() => setDonateStep("none")}
+          onSuccess={() => setDonateStep("profile")}
+        />
+      )}
+
+      {/* STEP 2: PROFILE */}
+      {donateStep === "profile" && (
+        <DonorProfile
+          onClose={() => setDonateStep("none")}
+          onContinue={() => {
+            alert("Next step: Donation page");
+            setDonateStep("none");
+          }}
+        />
       )}
     </div>
   );
 }
-
-/* ---------------- CARD COMPONENT ---------------- */
 
 function Card({ icon: Icon, title }) {
   return (
@@ -83,9 +80,7 @@ function Card({ icon: Icon, title }) {
       <div className="mb-4 p-4 bg-blue-200 rounded-full">
         <Icon className="w-8 h-8 text-slate-800" />
       </div>
-      <h3 className="text-lg font-semibold text-slate-800">
-        {title}
-      </h3>
+      <h3 className="text-lg font-semibold text-slate-800">{title}</h3>
     </div>
   );
 }
