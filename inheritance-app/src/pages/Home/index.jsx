@@ -11,7 +11,7 @@ import {
   ShieldCheckIcon,
 } from "@heroicons/react/24/outline";
 
-import tech from "../../assets/image.png";
+import tech from "../../assets/image2.png";
 
 export default function Home() {
   // 🔑 single source of truth
