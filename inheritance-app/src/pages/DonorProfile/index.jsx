@@ -1,46 +1,48 @@
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
-const donor = {
-  name: "John Smith",
-  totalAmount: 85200,
-  totalDonations: 42,
-  partiesSupported: 3,
-  activeYears: "2016 - 2021",
-};
+export default function DonorProfile() {
+  const { state } = useLocation();
+  const navigate = useNavigate();
 
-export default function DonorProfile({ onClose }) {
-  const navigate = useNavigate(); // ✅ INSIDE component
+  if (!state) {
+    return (
+      <div className="p-10 text-center">
+        <p>No donor data available.</p>
+        <button
+          onClick={() => navigate("/PublicViewer")}
+          className="text-blue-600 underline"
+        >
+          Go back
+        </button>
+      </div>
+    );
+  }
+
+  const { donor, party, amount, date } = state;
 
   return (
-    <div className="fixed inset-0 bg-black/40 z-50 flex items-center justify-center">
-      <div className="bg-blue-100 rounded-2xl p-8 w-full max-w-4xl shadow-xl">
+    <div className="w-full py-12 px-4 bg-gray-50">
+      <div className="max-w-4xl mx-auto bg-white rounded-xl shadow p-8">
 
         <h1 className="text-3xl font-semibold mb-6">
-          {donor.name}
+          {donor}
         </h1>
 
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
-          <Stat label="Total Donated" value={`₹${donor.totalAmount}`} />
-          <Stat label="Donations" value={donor.totalDonations} />
-          <Stat label="Parties" value={donor.partiesSupported} />
-          <Stat label="Years Active" value={donor.activeYears} />
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+          <Stat label="Party Supported" value={party} />
+          <Stat label="Last Donation" value={`₹${amount.toLocaleString("en-IN")}`} />
+          <Stat label="Last Donation Date" value={date} />
         </div>
 
-        <div className="flex justify-end gap-4 border-t pt-6">
+        <div className="flex gap-4">
           <button
-            onClick={onClose}
-            className="px-5 py-2 border rounded"
+            onClick={() => navigate(-1)}
+            className="border px-4 py-2 rounded"
           >
-            Cancel
-          </button>
-
-          <button
-            onClick={() => navigate("/Donation")}
-            className="px-5 py-2 bg-blue-600 text-white rounded"
-          >
-            Continue to Donate
+            Back
           </button>
         </div>
+
       </div>
     </div>
   );
@@ -48,8 +50,8 @@ export default function DonorProfile({ onClose }) {
 
 function Stat({ label, value }) {
   return (
-    <div className="bg-white rounded-xl p-4 shadow">
-      <p className="text-sm text-gray-600">{label}</p>
+    <div className="border rounded p-4">
+      <p className="text-sm text-gray-500">{label}</p>
       <p className="text-xl font-semibold">{value}</p>
     </div>
   );
