@@ -1,11 +1,18 @@
 import react from "react";
+import PartyPrivate from "../PartyPublic";
+import { BuildingOffice2Icon } from "@heroicons/react/24/solid";
+import { Link } from "react-router-dom";
 export default function PublicViewer(){
 return(
-    <div className="bg-slate-50 min-h-screen p-6">
-        <div className="max-w-6xl mx-auto space-y-6">
-            <h1 className="text-2xl font-bold text-slate-800">Public Viewer Page</h1>
-            <p className="text-slate-500">Welcome to the public viewer page. Here you can view public information and content.</p>
-        </div>
-    </div>
+    <Link to="/PartyPublic">
+        <div className="bg-blue-100 hover:bg-blue-200 transition rounded-xl p-8 flex flex-col items-center text-center shadow-sm hover:shadow-md cursor-pointer">
+            <div className="mb-4 p-4 bg-blue-200 rounded-full">
+              <BuildingOffice2Icon className="w-8 h-8 text-slate-800" />
+            </div>
+            <h3 className="text-lg font-semibold text-slate-800">
+              Party Page
+            </h3>
+          </div>
+    </Link>
 );
 }
