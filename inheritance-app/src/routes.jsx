@@ -4,6 +4,7 @@ import PublicLayout from "./layouts/PublicLayout";
 import Home from "./pages/Home";
 import PublicViewer from "./pages/PublicViewer";
 import Donation from "./pages/Donation";
+import DonorProfile from "./pages/DonorProfile";
 import PartyPrivate from "./pages/PartyPrivate";
 import Admin from "./pages/Admin";
 
@@ -13,9 +14,9 @@ export default function AppRoutes() {
       <Routes>
         <Route element={<PublicLayout />}>
           <Route index element={<Home />} />
-
           <Route path="PublicViewer" element={<PublicViewer />} />
           <Route path="Donation" element={<Donation />} />
+          <Route path="donor/:id" element={<DonorProfile />} />
           <Route path="PartyPrivate" element={<PartyPrivate />} />
           <Route path="Admin" element={<Admin />} />
         </Route>
