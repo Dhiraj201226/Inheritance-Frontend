@@ -9,6 +9,7 @@ import PartyPrivate from "./pages/PartyPrivate";
 import PublicViewer from "./pages/PublicViewer";
 import Donation from "./pages/Donation";
 import Admin from "./pages/Admin";
+import DonorProfile from "./pages/DonorProfile";
 import ProtectedPartyPage from "./ProtectedPartyPage.jsx"; 
 
 export default function AppRoutes() {
@@ -21,7 +22,7 @@ export default function AppRoutes() {
           <Route path="/About" element={<About/>}/>
           <Route path="/how-it-works" element={<HowItWorks/>}/>
           <Route path="/FAQ" element={<FAQ/>}/>
-          
+          <Route path="/DonorProfile" element={<DonorProfile/>}/>
           {/* Public Pages */}
           <Route path="/PartyPublic" element={<PartyPublic />} />
           <Route path="/PublicViewer" element={<PublicViewer/>}/>

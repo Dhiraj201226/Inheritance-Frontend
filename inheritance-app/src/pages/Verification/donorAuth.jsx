@@ -30,7 +30,7 @@ export default function DonorAuth({ onClose, onSuccess }) {
 
   const verifyCaptcha = () => {
     if (captchaInput === captcha) {
-      onSuccess(); // 🔥 THIS OPENS PROFILE
+      onSuccess(); 
     } else {
       setError("Captcha incorrect");
     }

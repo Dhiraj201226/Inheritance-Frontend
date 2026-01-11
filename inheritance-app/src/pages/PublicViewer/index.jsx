@@ -3,6 +3,11 @@ import { useNavigate } from "react-router-dom";
 import React from "react";
 import PartyPublic from "../PartyPublic";
 import DonorProfile from "../DonorProfile";
+import lotus from "../../assets/lotus.png"; 
+import hand from "../../assets/inc.png";
+import ss from "../../assets/ss.png";
+import ncp from "../../assets/ncp.png";
+
 
 const DUMMY_DATA = [
   {
@@ -10,6 +15,7 @@ const DUMMY_DATA = [
     party: "Bharatiya Janata Party",
     donor: "Rakesh Verma",
     date: "12 Feb 2024",
+    logo: lotus,
     amount: 120000,
   },
   {
@@ -17,22 +23,33 @@ const DUMMY_DATA = [
     party: "Indian National Congress",
     donor: "Smita Joshi",
     date: "09 Feb 2024",
+    logo: hand,
     amount: 137000,
   },
   {
     id: 3,
-    party: "Aam Aadmi Party",
+    party: "Shiv Sena",
     donor: "Vijay Sharma",
     date: "08 Feb 2024",
+    logo: ss,
     amount: 147000,
   },
   {
     id: 4,
-    party: "Indian National Congress",
+    party: "Nationalist Congress Party",
     donor: "Sunish Aggarwal",
     date: "31 Jan 2024",
+    logo: ncp,
     amount: 124000,
   },
+   {
+    id: 5,
+    party: "Bharatiya Janata Party",
+    donor: "Amit Singh",
+    date: "1 Feb 2024",
+    logo: lotus,
+    amount: 190000,
+  }
 ];
 
 export default function PublicViewer() {
@@ -49,7 +66,7 @@ export default function PublicViewer() {
   const handlePartyClick = (partyName) => {
     // You can pass the party name via state if you want the next page to be dynamic
     // For now, we redirect to the static PartyPublic page we built
-    navigate("/PartyPublic", { state: { party: "Bhartiya Janta Party" } });
+    navigate("/PartyPublic", { party: "Bhartiya Janta Party"}, );
   };
 
   
@@ -97,6 +114,7 @@ export default function PublicViewer() {
           <table className="w-full border rounded-lg overflow-hidden text-sm">
             <thead className="bg-blue-100 text-gray-700">
               <tr>
+                <th className="text-left px-4 py-3">Party Logo</th>
                 <th className="text-left px-4 py-3">Party Name</th>
                 <th className="text-left px-4 py-3">Donor Name</th>
                 <th className="text-left px-4 py-3">Date</th>
@@ -107,6 +125,9 @@ export default function PublicViewer() {
             <tbody>
               {filteredData.map((row) => (
                 <tr key={row.id} className="border-t hover:bg-gray-50">
+                     <tr className="w-24 h-24 bg-blue-50 rounded-xl flex items-center justify-center text-4xl">
+                              <img src={row.logo} alt="Logo" className="w-16 h-16" />
+                            </tr>
                   
                   {/* --- UPDATED: CLICKABLE PARTY NAME --- */}
                   <td className="px-4 py-3">
@@ -127,7 +148,7 @@ export default function PublicViewer() {
                   <td className="px-4 py-3">
                     <button
                       onClick={() =>
-                        navigate(`/donor/${row.id}`, { state: row })
+                        navigate(`/DonorProfile`, { state: row })
                       }
                       className="text-blue-600 border border-blue-600 px-3 py-1 rounded-lg hover:bg-blue-50"
                     >
