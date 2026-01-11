@@ -5,8 +5,7 @@ const DUMMY_USER = {
   password: "qwerty@24",
 };
 
-const generateCaptcha = () =>
-  Math.random().toString(36).substring(2, 8);
+const generateCaptcha = () => Math.random().toString(36).substring(2, 8);
 
 export default function DonorAuth({ onClose, onSuccess }) {
   const [step, setStep] = useState("login");
@@ -30,6 +29,7 @@ export default function DonorAuth({ onClose, onSuccess }) {
 
   const verifyCaptcha = () => {
     if (captchaInput === captcha) {
+      // Triggers the parent function to redirect
       onSuccess(); 
     } else {
       setError("Captcha incorrect");
@@ -37,65 +37,63 @@ export default function DonorAuth({ onClose, onSuccess }) {
   };
 
   return (
-    <div className="fixed inset-0 bg-black/40 z-50 flex items-center justify-center">
-      <div className="bg-white rounded-xl p-6 w-full max-w-md relative shadow-xl">
-
+    // 'fixed inset-0' ensures this sits on top of Home.jsx
+    <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center">
+      <div className="bg-white rounded-2xl p-8 w-full max-w-sm relative shadow-2xl animate-fade-in-up">
+        
+        {/* Close Button */}
         <button
           onClick={onClose}
-          className="absolute top-3 right-4 text-xl"
+          className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 text-2xl font-light"
         >
-          ×
+          &times;
         </button>
 
-        <h2 className="text-2xl font-semibold text-center mb-4">
-          Donor Login
+        <h2 className="text-2xl font-bold text-center mb-6 text-slate-800">
+          {step === "login" ? "Donor Secure Login" : "Human Verification"}
         </h2>
 
         {step === "login" && (
-          <>
+          <div className="space-y-4">
             <input
-              className="w-full border rounded px-3 py-2 mb-3"
+              className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-blue-500 outline-none"
               placeholder="Username"
-              onChange={(e) =>
-                setForm({ ...form, username: e.target.value })
-              }
+              onChange={(e) => setForm({ ...form, username: e.target.value })}
             />
             <input
               type="password"
-              className="w-full border rounded px-3 py-2 mb-3"
+              className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-blue-500 outline-none"
               placeholder="Password"
-              onChange={(e) =>
-                setForm({ ...form, password: e.target.value })
-              }
+              onChange={(e) => setForm({ ...form, password: e.target.value })}
             />
-            {error && <p className="text-red-500 text-sm mb-2">{error}</p>}
+            {error && <p className="text-red-500 text-sm font-medium">{error}</p>}
             <button
               onClick={handleLogin}
-              className="w-full bg-blue-600 text-white py-2 rounded"
+              className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 rounded-lg transition-colors"
             >
-              Login
+              Verify Credentials
             </button>
-          </>
+          </div>
         )}
 
         {step === "captcha" && (
-          <>
-            <div className="bg-gray-100 text-center py-2 rounded mb-3 font-mono">
+          <div className="space-y-4">
+            <div className="bg-slate-100 border border-slate-200 text-slate-600 text-center py-3 rounded-lg text-xl font-mono tracking-widest select-none">
               {captcha}
             </div>
             <input
-              className="w-full border rounded px-3 py-2 mb-3"
-              placeholder="Enter captcha"
+              className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-blue-500 outline-none"
+              placeholder="Enter the code above"
               onChange={(e) => setCaptchaInput(e.target.value)}
             />
-            {error && <p className="text-red-500 text-sm mb-2">{error}</p>}
+            {error && <p className="text-red-500 text-sm font-medium">{error}</p>}
             <button
               onClick={verifyCaptcha}
-              className="w-full bg-blue-600 text-white py-2 rounded"
+              className="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 rounded-lg transition-colors"
             >
-              Verify
+              Complete Verification
             </button>
-          </>
+          </div>
         )}
       </div>
     </div>

@@ -27,6 +27,8 @@ export default function AppRoutes() {
           <Route path="/PartyPublic" element={<PartyPublic />} />
           <Route path="/PublicViewer" element={<PublicViewer/>}/>
           <Route path="/Donation" element={<Donation/>}/>
+        {/* Route for clicking public data view details */}
+        <Route path="/donor/:id" element={<DonorProfile />} />
           <Route path="/Admin" element={<Admin/>}/>
 
           <Route path="/PartyPrivate" element={<ProtectedPartyPage/>}/>
