@@ -1,6 +1,7 @@
 import React from "react";
 import { CircleDollarSign, ArrowLeft, Calendar, FileText } from "lucide-react"; 
 import { useNavigate, useLocation } from "react-router-dom"; 
+// import { Link } from "react-router-dom"; // Link is no longer needed since we use navigate
 import bjp from "../../assets/bjp.png";
 import inc from "../../assets/inc.png";
 import ss from "../../assets/ss.png";
@@ -62,9 +63,10 @@ export default function DonorProfile() {
       
       {/* Top Bar */}
       <div className="bg-white border-b border-slate-200 px-6 py-4 mb-8 sticky top-0 z-30 shadow-sm">
-        <div className="max-w-7xl mx-auto flex items-center gap-2 text-slate-500 cursor-pointer hover:text-blue-600 w-fit" onClick={() => navigate(-1)}>
+        {/* Changed onClick handler to navigate specifically to /PublicViewer */}
+        <div className="max-w-7xl mx-auto flex items-center gap-2 text-slate-500 cursor-pointer hover:text-blue-600 w-fit" onClick={() => navigate("/PublicViewer")}>
            <ArrowLeft size={18} /> 
-           <span className="font-medium">Back</span>
+           <span className="font-medium">Back to List</span>
         </div>
       </div>
 
@@ -103,12 +105,12 @@ export default function DonorProfile() {
           
           <div className="h-64 flex items-end justify-between gap-2 sm:gap-6 px-2 pb-2 border-b border-slate-100">
             {/* Bars are now purely visual proportions of the calculated amounts */}
-            <Bar year="2019" height="h-24" amount={formatMoney(Math.floor(totalAmount * 0.1))} />
-            <Bar year="2020" height="h-32" amount={formatMoney(Math.floor(totalAmount * 0.15))} />
-            <Bar year="2021" height="h-28" amount={formatMoney(tx4)} /> {/* NCP Amount */}
-            <Bar year="2022" height="h-28" amount={formatMoney(tx3)} /> {/* SS Amount */}
+            <Bar year="2019" height="h-24" amount={formatMoney(Math.floor(totalAmount * 0.1))} bg="bg-blue-400" />
+            <Bar year="2020" height="h-32" amount={formatMoney(Math.floor(totalAmount * 0.15))} bg="bg-blue-400" />
+            <Bar year="2021" height="h-28" amount={formatMoney(tx4)} bg="bg-blue-400"/> {/* NCP Amount */}
+            <Bar year="2022" height="h-28" amount={formatMoney(tx3)} bg="bg-blue-400"/> {/* SS Amount */}
             <Bar year="2023" height="h-48" amount={formatMoney(tx2)} bg="bg-blue-400" /> {/* INC Amount */}
-            <Bar year="2024" height="h-56" amount={formatMoney(tx1)} bg="bg-blue-600" /> {/* BJP Amount */}
+            <Bar year="2024" height="h-56" amount={formatMoney(tx1)} bg="bg-blue-400" /> {/* BJP Amount */}
           </div>
         </div>
 
