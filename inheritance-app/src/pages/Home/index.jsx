@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 
 import DonorAuth from "../Verification/donorAuth";
 import DonorProfile from "../DonorProfile";
+import Donation from "../Donation";
 
 import {
   CircleStackIcon,
@@ -38,9 +39,9 @@ export default function Home() {
         </Link>
 
         {/* DONATE */}
-        <div onClick={() => setDonateStep("auth")}>
+        <Link to="/Donation">
           <Card icon={HeartIcon} title="Donate" />
-        </div>
+        </Link>
 
         <Link to="/PartyPrivate">
           <Card icon={BuildingOffice2Icon} title="Party Login" />

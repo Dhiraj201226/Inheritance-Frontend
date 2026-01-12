@@ -3,11 +3,11 @@ import { useNavigate } from "react-router-dom";
 import React from "react";
 import PartyPublic from "../PartyPublic";
 import DonorProfile from "../DonorProfile";
-import lotus from "../../assets/lotus.png"; 
+import lotus from "../../assets/bjp.png"; 
 import hand from "../../assets/inc.png";
 import ss from "../../assets/ss.png";
 import ncp from "../../assets/ncp.png";
-
+import { Link } from "react-router-dom";
 
 const DUMMY_DATA = [
   {
@@ -131,12 +131,11 @@ export default function PublicViewer() {
                   
                   {/* --- UPDATED: CLICKABLE PARTY NAME --- */}
                   <td className="px-4 py-3">
-                    <button 
-                      onClick={() => handlePartyClick(row.party)}
-                      className="font-medium text-blue-600 hover:text-blue-800 hover:underline text-left transition-colors"
-                    >
+                    <Link to="/PartyPublic" state={{ party: row.party }}
+                      className="font-medium text-blue-600 hover:text-blue-800 hover:underline text-left transition-colors">
+                    
                       {row.party}
-                    </button>
+                    </Link  >
                   </td>
                   {/* ----------------------------------- */}
 
@@ -192,9 +191,9 @@ export default function PublicViewer() {
             Encountered a discrepancy or have concerns? Use our verified
             complaint process.
           </p>
-          <button className="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-lg">
+          <Link to="/Complaint" className="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-lg">
             File a Complaint
-          </button>
+          </Link>
         </div>
 
       </div>

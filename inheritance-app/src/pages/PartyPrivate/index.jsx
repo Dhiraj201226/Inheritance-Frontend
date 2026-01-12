@@ -2,7 +2,7 @@ import React, { useState, useMemo, useEffect } from "react";
 import Card from "../../components/Card"; 
 import StatCard from "../../components/StatCard"; 
 import modi from "../../assets/modi.png"; 
-import lotus from "../../assets/lotus.png"; 
+import bjp from "../../assets/bjp.png"; 
 
 export default function PartyPrivate() {
   // --- STATE 1: UI LOADING STATES ---
@@ -127,9 +127,9 @@ export default function PartyPrivate() {
   };
 
   const handleUpdateBudget = (e) => {
-    e.preventDefault();
+    e.preventDefault()
     setIsBudgetModalOpen(false);
-    alert("Success: Logistics budget has been increased. Compliance threshold reset.");
+    
   };
 
   const handleResetData = () => {
@@ -206,7 +206,7 @@ export default function PartyPrivate() {
         {/* PROFILE ROW */}
         <Card className="p-6 flex items-center justify-between">
           <div className="flex items-center gap-6">
-            <div className="w-20 h-20 bg-blue-50 rounded-xl flex items-center justify-center p-2 border border-blue-100"><img src={lotus} alt="Lotus" className="w-14 h-14" /></div>
+            <div className="w-20 h-20 bg-blue-50 rounded-xl flex items-center justify-center p-2 border border-blue-100"><img src={bjp} alt="Lotus" className="w-14 h-14" /></div>
             <div>
               <h2 className="text-2xl font-bold text-slate-800">BJP (Bharatiya Janata Party)</h2>
               <div className="flex items-center gap-4 mt-2">
@@ -220,33 +220,6 @@ export default function PartyPrivate() {
              <button className="h-8 w-8 flex items-center justify-center rounded-full bg-white border shadow-sm hover:text-blue-600">🔄</button>
           </div>
         </Card>
-
-        {/* ALERTS SECTION */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="bg-amber-50 border border-amber-200 rounded-xl p-4 flex items-start gap-3">
-                <div className="bg-amber-100 p-2 rounded-full text-amber-600">⚠️</div>
-                <div>
-                    <h4 className="font-bold text-amber-800 text-sm">Action Required: High Value Donors</h4>
-                    <p className="text-xs text-amber-600 mt-1">3 new donations {">"} ₹20,000 require PAN card verification before acceptance.</p>
-                    <button className="mt-2 text-xs font-semibold bg-amber-200 text-amber-800 px-3 py-1 rounded hover:bg-amber-300 transition">Review KYC Queue</button>
-                </div>
-            </div>
-
-            {/* --- LOGISTICS BUDGET ALERT WITH FUNCTIONAL BUTTON --- */}
-            <div className="bg-blue-50 border border-blue-200 rounded-xl p-4 flex items-start gap-3">
-                <div className="bg-blue-100 p-2 rounded-full text-blue-600">📉</div>
-                <div>
-                    <h4 className="font-bold text-blue-800 text-sm">Budget Alert: Logistics</h4>
-                    <p className="text-xs text-blue-600 mt-1">Logistics spending has reached 85% of the allocated Q2 budget.</p>
-                    <button 
-                        onClick={() => setIsBudgetModalOpen(true)}
-                        className="mt-2 text-xs font-semibold bg-blue-200 text-blue-800 px-3 py-1 rounded hover:bg-blue-300 transition"
-                    >
-                        Adjust Budget
-                    </button>
-                </div>
-            </div>
-        </div>
 
         {/* STATS ROW */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -313,7 +286,7 @@ export default function PartyPrivate() {
 
           {/* RIGHT COLUMN */}
           <section className="lg:col-span-4 space-y-6">
-            <Card className="p-5 flex flex-col h-auto min-h-[350px]">
+            <Card className="p-5 flex flex-col h-auto min-h-[500px] text-[15px]">
                 <h3 className="font-semibold text-slate-700 mb-4">💸 Expense Distribution</h3>
                 {expensesChart.length > 0 ? (
                     <div className="flex-1 flex flex-col items-center justify-center">
@@ -340,24 +313,6 @@ export default function PartyPrivate() {
               <h3 className="font-semibold text-slate-700 text-sm mb-4 flex items-center justify-between">Compliance Status<span className="text-[10px] bg-emerald-100 text-emerald-700 px-2 py-0.5 rounded-full">Good</span></h3>
               <div className="space-y-3 mb-4">{["Disclosures submitted", "Expenses declared", "Deadline met"].map((item) => (<div key={item} className="flex items-center gap-3"><span className="h-5 w-5 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center text-xs">✓</span><span className="text-xs font-medium text-slate-600">{item}</span></div>))}</div>
               <div className="h-2 w-full bg-slate-100 rounded-full overflow-hidden"><div className="h-full w-11/12 bg-emerald-500 rounded-full" /></div><p className="text-right text-[10px] text-emerald-600 mt-1 font-medium">92% Complete</p>
-            </Card>
-
-            <Card className="p-5 bg-slate-800 text-white border-none">
-               <div className="flex items-center justify-between mb-4"><h3 className="font-semibold text-sm flex items-center gap-2">🔐 Blockchain Liveness</h3><div className="flex items-center gap-2"><span className="text-[10px] text-green-400 font-medium tracking-wide">Mainnet</span><div className="h-2 w-2 bg-green-400 rounded-full animate-pulse"></div></div></div>
-               <div className="bg-slate-700/50 rounded-lg p-3 mb-3 border border-slate-600 relative overflow-hidden">
-                  <div className="flex justify-between text-[10px] text-slate-400 mb-1"><span>Current Block Height</span> <span className="text-white font-mono font-bold">#{currentBlock.toLocaleString()}</span></div>
-                  <div className="h-1.5 w-full bg-slate-600 rounded-full overflow-hidden mb-2"><div className="h-full w-3/4 bg-blue-400 rounded-full animate-pulse"></div></div>
-                  <div className="flex justify-between text-[9px] text-slate-500"><span>Last mined: 2s ago</span><span>Diff: 4.2 T</span></div>
-               </div>
-               <div className="mb-3">
-                   <p className="text-[10px] text-slate-400 mb-1">Smart Contract Address</p>
-                   <div onClick={handleCopyAddress} className="group cursor-pointer relative font-mono text-[10px] text-slate-300 bg-slate-900 p-2 rounded border border-slate-700 flex justify-between items-center hover:border-slate-500 transition-colors">
-                        <span className="truncate">0x71C7656EC7ab88b098defB751B7401B5f6d893A8</span>
-                        <span className="ml-2 opacity-0 group-hover:opacity-100 text-blue-400">📋</span>
-                        {copied && <div className="absolute right-0 top-[-25px] bg-black text-white text-[9px] px-2 py-1 rounded shadow-lg">Copied!</div>}
-                   </div>
-               </div>
-               <button onClick={handleVerifyNode} disabled={isNodeVerifying} className={`w-full py-2 rounded text-xs font-semibold transition-all flex items-center justify-center gap-2 ${isNodeVerifying ? 'bg-slate-700 text-slate-400 cursor-wait' : 'bg-blue-600 hover:bg-blue-500 text-white'}`}>{isNodeVerifying ? <><span>⚙️</span> Syncing Nodes...</> : nodeStatus === 'active' ? <><span>✅</span> Nodes Synced (45ms)</> : <><span>⚡</span> Verify Node Status</>}</button>
             </Card>
           </section>
         </div>
@@ -398,57 +353,7 @@ export default function PartyPrivate() {
         </div>
       )}
 
-      {/* --- MODAL 2: ADJUST BUDGET (NEW) --- */}
-      {isBudgetModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-sm p-4">
-            <div className="bg-white rounded-2xl p-6 w-full max-w-sm shadow-2xl transform transition-all">
-                <div className="flex justify-between items-center mb-5">
-                    <h3 className="text-lg font-bold text-slate-800">Adjust Logistics Budget</h3>
-                    <button onClick={() => setIsBudgetModalOpen(false)} className="text-slate-400 hover:text-slate-600 text-2xl leading-none">&times;</button>
-                </div>
-                
-                <div className="space-y-4">
-                    <div className="bg-blue-50 p-4 rounded-lg border border-blue-100">
-                        <div className="flex justify-between text-sm mb-1">
-                            <span className="text-slate-600">Allocated Budget</span>
-                            <span className="font-bold text-slate-800">₹ 50,00,000</span>
-                        </div>
-                        <div className="flex justify-between text-sm mb-2">
-                            <span className="text-slate-600">Currently Spent</span>
-                            <span className="font-bold text-red-600">₹ 42,50,000</span>
-                        </div>
-                        <div className="w-full bg-blue-200 h-2 rounded-full overflow-hidden">
-                            <div className="bg-blue-600 h-full w-[85%]"></div>
-                        </div>
-                        <p className="text-[10px] text-slate-500 mt-2 text-right">85% Utilized</p>
-                    </div>
-
-                    <form onSubmit={handleUpdateBudget} className="space-y-4">
-                        <div>
-                            <label className="block text-xs font-semibold text-slate-600 mb-1">Action</label>
-                            <select className="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm text-slate-700 outline-none">
-                                <option>Increase Allocation</option>
-                                <option>Reallocate from Marketing</option>
-                                <option>Reallocate from HQ Fund</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label className="block text-xs font-semibold text-slate-600 mb-1">Amount to Add (₹)</label>
-                            <input 
-                                required 
-                                type="number" 
-                                className="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm outline-none focus:border-blue-500"
-                                placeholder="Enter amount"
-                            />
-                        </div>
-                        <button type="submit" className="w-full bg-slate-800 hover:bg-slate-700 text-white font-medium py-2.5 rounded-lg mt-2 transition-colors">
-                            Save Changes
-                        </button>
-                    </form>
-                </div>
-            </div>
-        </div>
-      )}
+      
 
     </div>
   );

@@ -15,7 +15,7 @@ import {
 } from 'lucide-react';
 import { useNavigate } from "react-router-dom";
 
-import lotus from '../../assets/lotus.png';
+import bjp from '../../assets/bjp.png';
 import congress from '../../assets/inc.png';
 import ss from '../../assets/ss.png';
 import ncp from '../../assets/ncp.png';
@@ -27,13 +27,13 @@ export default function Admin() {
   const navigate = useNavigate();
 
   const allTransactions = [
-    { id: "BJP-14572C", color: "bg-orange-500", donor: "Rakesh Verma", date: "18 Feb 2024", amount: "2,20,000", rawAmount: 220000, party: "Bharatiya Janata Party", logo: lotus },
-    { id: "INC-56342P", color: "bg-blue-500", donor: "Smita Joshi", date: "12 Feb 2024", amount: "1,20,000", rawAmount: 120000, party: "Indian National Congress", logo: congress },
-    { id: "SS-786343Z", color: "bg-orange-800", donor: "Vijay Sharma", date: "08 Feb 2024", amount: "1,43,000", rawAmount: 143000, party: "Shiv Sena", logo: ss },
-    { id: "BJP-98235F", color: "bg-orange-500", donor: "Sunil Deshpande", date: "09 Feb 2024", amount: "97,000", rawAmount: 97000, party: "Bharatiya Janata Party", logo: lotus },
-    { id: "NCP-42790D", color: "bg-blue-800", donor: "Rahul Mishra", date: "02 Feb 2024", amount: "90,000", rawAmount: 90000, party: "Nationalist Congress Party", logo: ncp },
+    { id: "BJP-14572C", color: "bg-orange-500", donor: "Rakesh Verma", date: "18 Feb 2024", amount: "2,20,000", rawAmount: 220000, party: "Bharatiya Janata Party", logo: bjp },
+      { id: "INC-56342P", color: "bg-blue-500", donor: "Smita Joshi", date: "12 Feb 2024", amount: "1,20,000", rawAmount: 120000, party: "Indian National Congress", logo: congress },
+      { id: "SS-786343Z", color: "bg-orange-800", donor: "Vijay Sharma", date: "08 Feb 2024", amount: "1,43,000", rawAmount: 143000, party: "Shiv Sena", logo: ss },
+      { id: "BJP-98235F", color: "bg-orange-500", donor: "Sunil Deshpande", date: "09 Feb 2024", amount: "97,000", rawAmount: 97000, party: "Bharatiya Janata Party", logo: bjp },
+      { id: "NCP-42790D", color: "bg-blue-800", donor: "Rahul Mishra", date: "02 Feb 2024", amount: "90,000", rawAmount: 90000, party: "Nationalist Congress Party", logo: ncp },
     { id: "INC-11223X", color: "bg-blue-500", donor: "Ankit Roy", date: "20 Feb 2024", amount: "15,000", rawAmount: 15000, party: "Indian National Congress", logo: congress },
-    { id: "BJP-33445Y", color: "bg-orange-500", donor: "Meera Das", date: "19 Feb 2024", amount: "5,000", rawAmount: 5000, party: "Bharatiya Janata Party", logo: lotus },
+    { id: "BJP-33445Y", color: "bg-orange-500", donor: "Meera Das", date: "19 Feb 2024", amount: "5,000", rawAmount: 5000, party: "Bharatiya Janata Party", logo: bjp },
   ];
 
  const complaintsData = [

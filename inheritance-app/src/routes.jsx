@@ -11,6 +11,7 @@ import Donation from "./pages/Donation";
 import Admin from "./pages/Admin";
 import DonorProfile from "./pages/DonorProfile";
 import ProtectedPartyPage from "./ProtectedPartyPage.jsx"; 
+import Complaint from "./pages/Complaint";
 
 export default function AppRoutes() {
   return (
@@ -28,6 +29,8 @@ export default function AppRoutes() {
           <Route path="/PublicViewer" element={<PublicViewer/>}/>
           <Route path="/Donation" element={<Donation/>}/>
         {/* Route for clicking public data view details */}
+        <Route path="/PartyPublic/:id" element={<PartyPublic />} />
+          <Route path="/Complaint" element={<Complaint />} />
         <Route path="/donor/:id" element={<DonorProfile />} />
           <Route path="/Admin" element={<Admin/>}/>
 
