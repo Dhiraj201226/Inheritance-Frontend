@@ -9,6 +9,7 @@ import PartyPrivate from "./pages/PartyPrivate";
 import PublicViewer from "./pages/PublicViewer";
 import Donation from "./pages/Donation";
 import Admin from "./pages/Admin";
+import DonorAuth from "./pages/Verification/donorAuth";
 import DonorProfile from "./pages/DonorProfile";
 import ProtectedPartyPage from "./ProtectedPartyPage.jsx"; 
 import Complaint from "./pages/Complaint";
@@ -33,7 +34,7 @@ export default function AppRoutes() {
           <Route path="/Complaint" element={<Complaint />} />
         <Route path="/donor/:id" element={<DonorProfile />} />
           <Route path="/Admin" element={<Admin/>}/>
-
+          <Route path="/verify-donor" element={<DonorAuth/>}/>
           <Route path="/PartyPrivate" element={<ProtectedPartyPage/>}/>
 
         </Route>
