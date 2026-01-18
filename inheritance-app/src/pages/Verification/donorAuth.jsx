@@ -24,7 +24,7 @@ export default function DonorAuth() {
 
   // Handle Success (Navigate to Profile/Donation)
   const handleSuccess = () => {
-    navigate("/DonorProfile"); // <--- This redirects to the next page
+    navigate("/Donation"); // <--- This redirects to the next page
   };
 
   const handleLogin = () => {

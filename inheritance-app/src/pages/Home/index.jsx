@@ -1,12 +1,5 @@
-import { useState } from "react";
-import { Link } from "react-router-dom"; // Keep this for other links
+import { Link } from "react-router-dom";
 
-// Components
-import DonorAuth from "../Verification/donorAuth"; // Adjust path if needed
-import DonorProfile from "../DonorProfile";
-// import Donation from "../Donation"; // Not needed if we use state for steps
-
-// Icons & Assets
 import {
   CircleStackIcon,
   HeartIcon,
@@ -16,59 +9,76 @@ import {
 import tech from "../../assets/image2.png";
 
 export default function Home() {
-  // 🔑 State determines which popup is showing
-  // options: "none" | "auth" | "profile"
-  const [donateStep, setDonateStep] = useState("none");
-
   return (
-    <div className="bg-white w-full py-12 px-4 sm:px-6 lg:px-8 relative">
+    <div className="min-h-screen bg-gray-50 w-full">
       
-      {/* HERO IMAGE */}
-      <div className="w-full max-w-5xl mx-auto mb-12">
-        <img
-          src={tech}
-          alt="OpenAudit data flow"
-          className="w-full rounded-xl shadow-lg"
-        />
-      </div>
+      {/* 1. NAVBAR / HEADER */}
+      {/* Moved outside the main grid so it sits at the top correctly */}
+      
 
-      {/* MAIN CARDS */}
-      <div className="w-full max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-2 gap-8">
-        
-        {/* Public Viewer - Uses standard Link Routing */}
-        <Link to="/PublicViewer">
-          <Card icon={CircleStackIcon} title="Explore Public Data" />
-        </Link>
+      <main className="py-12 px-4 sm:px-6 lg:px-8">
+        {/* 2. HERO IMAGE */}
+        <div className="w-full max-w-4xl mx-auto mb-12">
+          <img
+            src={tech}
+            alt="OpenAudit data flow"
+            className="w-full rounded-2xl shadow-xl border border-gray-100 object-cover"
+          />
+        </div>
 
-        {/* DONATE - Uses State (onClick) instead of Link */}
-        {/* FIX 1: Removed <Link> wrapper. Added onClick to trigger state. */}
-      <Link to="/verify-donor"> 
-          <Card icon={HeartIcon} title="Donate" />
-        </Link>
+        {/* 3. MAIN CARDS GRID */}
+        {/* Now strictly contains only the card items */}
+        <div className="w-full max-w-4xl mx-auto grid grid-cols-1 sm:grid-cols-2 gap-6">
+          
+          <Link to="/PublicViewer">
+            <Card 
+              icon={CircleStackIcon} 
+              title="Explore Public Data" 
+              description="View transparent audit logs and records."
+            />
+          </Link>
 
-        {/* Party Login - Uses standard Link Routing */}
-        <Link to="/PartyPrivate">
-          <Card icon={BuildingOffice2Icon} title="Party Login" />
-        </Link>
+          <Link to="/verify-donor">
+            <Card 
+              icon={HeartIcon} 
+              title="Donate" 
+              description="Support the cause with verified transactions."
+            />
+          </Link>
 
-        {/* Admin - Uses standard Link Routing */}
-        <Link to="/Admin">
-          <Card icon={ShieldCheckIcon} title="Admin Portal" />
-        </Link>
-      </div>
+          <Link to="/PartyPrivate">
+            <Card 
+              icon={BuildingOffice2Icon} 
+              title="Party Login" 
+              description="Authorized access for political parties."
+            />
+          </Link>
 
+          <Link to="/Admin">
+            <Card 
+              icon={ShieldCheckIcon} 
+              title="Admin Portal" 
+              description="System configuration and oversight."
+            />
+          </Link>
+
+        </div>
+      </main>
     </div>
   );
 }
 
-// Simple Card Component (No changes needed)
-function Card({ icon: Icon, title }) {
+// Slightly enhanced Card component
+function Card({ icon: Icon, title, description }) {
   return (
-    <div className="bg-blue-100 hover:bg-blue-200 transition rounded-xl p-8 flex flex-col items-center text-center shadow-sm hover:shadow-md cursor-pointer h-full justify-center">
-      <div className="mb-4 p-4 bg-blue-200 rounded-full">
-        <Icon className="w-8 h-8 text-slate-800" />
+    <div className="bg-white hover:bg-blue-50 border border-gray-200 hover:border-blue-200 transition-all duration-200 rounded-xl p-6 flex flex-col items-center text-center shadow-sm hover:shadow-md cursor-pointer h-full">
+      <div className="mb-4 p-3 bg-blue-100 rounded-full text-blue-600">
+        <Icon className="w-8 h-8" />
       </div>
-      <h3 className="text-lg font-semibold text-slate-800">{title}</h3>
+      <h3 className="text-lg font-bold text-slate-800 mb-1">{title}</h3>
+      {description && (
+        <p className="text-sm text-slate-500">{description}</p>
+      )}
     </div>
   );
 }
